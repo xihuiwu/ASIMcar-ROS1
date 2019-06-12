@@ -1,0 +1,8 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  
+  <include file="$(find ASIMcar)/launch/vesc.launch" />
+  
+  <include file="$(find ASIMcar)/launch/sensors.launch" />
+
+</launch>

@@ -1,0 +1,12 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <!-- Config -->
+  <arg name="port" default="/dev/input/js3" />
+  
+  <!-- Teleop -->
+  <node name="joy_node" type="joy_node" pkg="joy" output="screen" >
+    <param name="dev" value="$(arg port)" />
+  </node>
+
+</launch>

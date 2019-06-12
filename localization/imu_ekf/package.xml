@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>imu_ekf</name>
+  <version>0.0.1</version>
+  <description>IMU localization package</description>
+
+  <author>Xihui Wu</author>
+  <maintainer email="wxh@vt.edu">Xihui Wu</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>tf</run_depend>
+  <run_depend>tf2_ros</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>rostopic</run_depend>
+  <run_depend>rviz</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+
+  <export>
+  </export>
+</package>

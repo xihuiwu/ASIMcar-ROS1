@@ -1,0 +1,38 @@
+vesc:
+    # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
+    speed_to_erpm_gain: 1988
+    speed_to_erpm_offset: 0.0
+
+    # motor smoother - limits acceleration and smooths anything above limit
+    max_acceleration: 3.5 # meters/second^2
+    throttle_smoother_rate: 75.0 # messages/sec
+
+    # servo value (0 to 1) =  steering_angle_to_servo_gain * steering angle (radians) + steering_angle_to_servo_offset
+    steering_angle_to_servo_gain: -1.0472
+    steering_angle_to_servo_offset: 0.58
+
+    tachometer_ticks_to_meters_gain: 0.00225
+    # servo smoother - limits rotation speed and smooths anything above limit
+    max_servo_speed: 3.2 # radians/second
+    servo_smoother_rate: 75.0 # messages/sec
+
+    # publish odom to base link tf
+    vesc_to_odom/publish_tf: false
+
+    # car wheelbase is about 25.6cm 
+    wheelbase: .256
+
+    vesc_driver:
+        port: /dev/VESC
+        duty_cycle_min: 0.0
+        duty_cycle_max: 0.0
+        current_min: 0.0
+        current_max: 80
+        brake_min: -20000.0
+        brake_max: 200000.0
+        speed_min: -4000
+        speed_max: 4000
+        position_min: 0.0
+        position_max: 0.0
+        servo_min: 0
+        servo_max: 1
