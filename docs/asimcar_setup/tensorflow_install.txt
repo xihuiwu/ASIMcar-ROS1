@@ -1,0 +1,5 @@
+1) Installation
+pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp33 tensorflow-gpu
+
+2) Uninstall
+pip uninstall -y tensorflow-gpu

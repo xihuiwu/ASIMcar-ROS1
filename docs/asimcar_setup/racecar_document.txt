@@ -1,0 +1,57 @@
+****Installation****
+1.BLDC_Tool
+git clone https://github.com/jetsonhacks/installBLDC.git -> ./installBLDC.sh
+
+2.Firmware
+https://github.com/vedderb/bldc-tool -> ~/bldc-tool/firmware/hw_410_411_412/VESC_servoout.bin
+
+3.ROS
+sudo apt-get install libyaml-cpp-dev
+sudo apt-get install python-catkin-tools 
+
+
+****RC Car Spec****
+wheelbase = 256 mm
+wheel diameter = 66 mm
+Overall Drive Ratio = 6.87
+LiPo nominal voltage = 11.1 V
+BLDC Motor Kv constant = 3500 (max rpm is 38850)
+
+
+****Top Speed Calculation****
+1 m/s = 2.23694 mph
+top_speed (m/s) = max_rpm/overall_drive_ratio/60*pi*wheel diameter
+
+
+****Configuration of steering angle and speed****
+joy_teleop.yaml -> axis[1]scale,axis[3]scale
+vesc.yaml -> speed_to_erpm_gain, steering_angle_to_servo_gain, steering_angle, 
+
+erpm = axis[1]scale*speed_to_erpm_gain*speed + speed_to_erpm_offset
+speed_min < erpm < speed_max
+
+steering_angle = axis[3]scale*steering_angle_to_servo_gain*steering_angle + steering_angle_to_servo_offset
+servo_min < steering_angle < servo_max
+
+
+****Configuration of max acceleration and servo speed****
+vesc.yaml -> max_acceleration, max_servo_speed
+
+
+****Port Specification****
+VESC - /dev/VESC
+IMU - /dev/IMU
+Camera - /dev/video1
+Joystick - /dev/js0
+
+
+****ASIMcar Hardware Initialization****
+roslaunch asimcar asimcar.launch
+
+
+****SSH****
+ssh asimcar@ip_address
+password: asimasim!
+****Communication****
+export ROS_MASTER_URI=http://*laptop_ip_address*:11311
+CHANGE ROS_IP AND ROS_MASTER_URI IF IP ADDRESSES ARE CHANGED!!
