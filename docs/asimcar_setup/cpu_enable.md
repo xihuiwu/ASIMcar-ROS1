@@ -10,6 +10,6 @@
 sudo nvpmodel -m [mode]
 
 # Find current mode:
-'''
+```
 sudo nvpmodel -q
-'''
+```
