@@ -1,5 +1,5 @@
 # Rule Creation
-Create a file /etc/udev/rules.d/99-usb-serial.rules with the following line (template)
+Create a file /etc/udev/rules.d/99-usb-serial.rules with the following line (template)<br />
 $ SUBSYSTEM=="tty", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="5678", SYMLINK+="your_device_name" 
 
 # Load Rule
