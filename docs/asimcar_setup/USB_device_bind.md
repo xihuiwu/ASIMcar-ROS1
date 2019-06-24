@@ -7,4 +7,3 @@ sudo udevadm trigger
 
 # Verify Rule
 ls -l /dev/your_device_name
-
