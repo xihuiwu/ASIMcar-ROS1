@@ -1,0 +1,32 @@
+Pre-requisite
+sudo apt install libncurses5-dev
+
+1. Create environment
+touch $HOME/nvidia/environment
+#!/bin/sh
+# toolchain flags
+export BSPTOOLCHAIN=$HOME/nvidia/install/bin
+export PATH=${BSPTOOLCHAIN}:${PATH}
+# kernel flags
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-unknown-linux-gnu-
+export TEGRA_KERNEL_OUT=$HOME/nvidia/tegra-jetson-tx2-kernel
+
+2. Compile
+$ source environment
+$ mkdir -p $TEGRA_KERNEL_OUT
+$ cd $HOME/nvidia/kernel/kernel-4.9
+# list and apply real-time patches
+$ cd scripts
+$ ./rt-patch apply-patches
+# create default config
+$ make O=$TEGRA_KERNEL_OUT ARCH=$ARCH tegra_defconfig
+# change CONFIG_LOCALVERSION="-rt", "CONFIG_HZ_1000=y" and  CONFIG_PREEMPT_RT_FULL=y for real-time scheduling
+$ make O=$TEGRA_KERNEL_OUT ARCH=$ARCH menuconfig
+# create compressed kernel image
+$ make -j4 O=$TEGRA_KERNEL_OUT ARCH=$ARCH zImage
+# compile device tree
+$ make O=$TEGRA_KERNEL_OUT ARCH=$ARCH dtbs
+# compile and install kernel modules
+$ make -j4 O=$TEGRA_KERNEL_OUT ARCH=$ARCH modules
+$ make O=$TEGRA_KERNEL_OUT ARCH=$ARCH modules_install INSTALL_MOD_PATH=$TEGRA_KERNEL_OUT/modules
