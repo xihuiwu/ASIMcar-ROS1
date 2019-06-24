@@ -7,7 +7,9 @@
 |4	  |Max-P Denver   |1      	|2.0 GHz	 |1	      |2.0 GHz	 |1.12 Ghz     |
 
 # Change mode:
+```
 sudo nvpmodel -m [mode]
+```
 
 # Find current mode:
 ```
