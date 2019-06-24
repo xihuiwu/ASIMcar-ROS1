@@ -6,9 +6,9 @@ sudo apt install qt5-default -y
 # Create environment
 ```
 touch $HOME/nvidia/environment
-```
-```
 gedit $HOME/nvidia/environment
+```
+```
 #!/bin/sh
 export TEGRA_KERNEL_OUT=$HOME/nvidia/tegra-jetson-tx2-kernel-rt
 ```
