@@ -15,5 +15,5 @@ sudo chmod g+rw /dev/i2c-1
 
 4. Add your user to the group i2c:
 ```
-sudo usermod -aG i2c username
+sudo usermod -aG i2c {username}
 ```
