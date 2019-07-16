@@ -10,7 +10,7 @@ sudo chown :i2c /dev/i2c-1
 
 3. Change the file permissions of the device /dev/i2c-1 so users of the i2c group can read and write to the device:
 ```
-sudo chmod g+rw /dev/i2c-1
+sudo chmod 666 /dev/i2c-1
 ```
 
 4. Add your user to the group i2c:
