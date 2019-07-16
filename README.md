@@ -10,4 +10,4 @@ After OpenCV installation, delete ROS cv2.so which is located
 ```
 /opt/ros/{ROS_version}/lib/python2.7/dist-packages
 ```
-to avoid version conflict.
+ to avoid version conflict.
