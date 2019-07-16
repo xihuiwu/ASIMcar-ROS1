@@ -11,7 +11,7 @@ After OpenCV installation, delete ROS cv2.so which is located
 /opt/ros/{ROS_version}/lib/python2.7/dist-packages
 ```
   
-* When building the workspace, using the following command to avoid opencv library conflict.
+* When building the workspace, using the following build command to avoid opencv library conflict.
 ```
 catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 ```
