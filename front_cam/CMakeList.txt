@@ -3,9 +3,10 @@ project(front_cam)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  rospy
-  sensor_msgs
   std_msgs
+  sensor_msgs
+  rosbag
+  rostopic
   cv_bridge
   image_transport
 )
@@ -19,10 +20,12 @@ include_directories(
 
 catkin_package(
   CATKIN_DEPENDS
+  std_msgs
+  sensor_msgs
+  rosbag
+  rostopic
   cv_bridge
   image_transport
-  sensor_msgs
-  std_msgs
 )
 
 add_executable(camera src/camera.cpp)
