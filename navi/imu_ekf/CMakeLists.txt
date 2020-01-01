@@ -15,7 +15,6 @@ catkin_package(
   CATKIN_DEPENDS
   rosbag
   rostopic
-  rviz
   sensor_msgs
   std_msgs
 )
