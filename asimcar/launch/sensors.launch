@@ -6,7 +6,7 @@
   <rosparam file="$(arg sensors_config)" command="load" />
   
   <!-- Sensors -->
-  <node name="front_cam" type="camera" pkg="asimcar" output="screen" />
+  <node name="front_cam" type="camera" pkg="front_cam" output="screen" />
   <node name="radar" type="radar.py" pkg="asimcar" output="screen" />
   <include file="$(find razor_imu_m0_driver)/launch/driver_nodelet.launch" />
 
