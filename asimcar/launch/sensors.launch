@@ -6,7 +6,7 @@
   <rosparam file="$(arg sensors_config)" command="load" />
   
   <!-- Sensors -->
-  <node name="front_cam" type="camera" pkg="front_cam" output="screen" />
-  <node name="radar" type="radar.py" pkg="front_radar" output="screen" />
+  <node name="front_cam_node" type="camera_node" pkg="front_cam" output="screen" />
+  <node name="front_radar_node" type="radar.py" pkg="front_radar" output="screen" />
 
 </launch>
