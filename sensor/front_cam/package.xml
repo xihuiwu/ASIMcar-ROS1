@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>front_cam</name>
+  <version>0.0.1</version>
+  <description>ASIMcar front camera package</description>
+
+  <author>Xihui Wu</author>
+  <maintainer email="wxh@vt.edu">Xihui Wu</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
+  
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>rosbag</run_depend>
+  <run_depend>rostopic</run_depend>
+</package>
