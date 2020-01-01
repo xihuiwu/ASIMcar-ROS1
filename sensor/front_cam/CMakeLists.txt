@@ -28,5 +28,5 @@ catkin_package(
   image_transport
 )
 
-add_executable(camera src/camera.cpp)
+add_executable(camera_node src/camera_node.cpp)
 target_link_libraries(camera ${catkin_LIBRARIES} ${OpenCV_LIBS})
