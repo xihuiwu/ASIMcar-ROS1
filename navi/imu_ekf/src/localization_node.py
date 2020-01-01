@@ -5,7 +5,7 @@ import rospy
 from std_msgs.msg import Float64
 from sensor_msgs.msg import Imu
 from geometry_msgs.msg import Pose2D
-from bicycle_msgs.msg import BicyclePoseStamped
+from bicycle_msgs.msg import BicycleStateStamped
 from vesc_msgs.msg import VescStateStamped
 
 class ekf_localization:
@@ -26,7 +26,7 @@ class ekf_localization:
 		self.acce_sub = rospy.Subscriber("/vesc/sensors/core", VescStateStamped, self.acceCallback)
 		self.steering_sub = rospy.Subscriber("/vesc/sensors/servo_position_command", Float64, self.acceCallback)
 		self.imu_sub = rospy.Subscriber("/imu/data", Imu, self.imuCallback)
-		self.pose_pub = rospy.Publisher("/asimcar/state", BicyclePoseStamped, queue_size=1)
+		self.pose_pub = rospy.Publisher("/asimcar/state", BicycleStateStamped, queue_size=1)
 
 		gps = np.zeros(shape=(2,1))
 		state = np.zeros(shape=(4,1))
@@ -47,7 +47,7 @@ class ekf_localization:
 			R = np.diag([0, 0, angularCov[2], acceCov[0]])
 			H = np.diag([0, 0, 1, 1])
 
-		pose_msg = BicyclePoseStamped()
+		state_msg = BicycleStateStamped()
 
 		pre_time = rospy.Time.now()
 
@@ -94,13 +94,13 @@ class ekf_localization:
 		state = state + K*state_tilde
 		P = (np.eye(4) - K*H)*P
 
-		pose_msg.header.stamp = time
-		pose_msg.pose.x = state[0]
-		pose_msg.pose.y = state[1]
-		pose_msg.pose.theta = state[2]
-		pose_msg.pose.speed = state[3]
+		state_msg.header.stamp = time
+		state_msg.x = state[0]
+		state_msg.y = state[1]
+		state_msg.theta = state[2]
+		state_msg.v = state[3]
 
-		self.pose_pub.publish(pose_msg)
+		self.pose_pub.publish(state_msg)
 
 if __name__ == "__main__":
 	rospy.init_node('ekf_localization', anonymous=True)
