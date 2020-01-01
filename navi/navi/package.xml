@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
-  <name>localization</name>
+  <name>navi</name>
   <version>0.0.1</version>
   <description>
-    Metapackage for ROS interface to the localization tasks.
+    Metapackage for ROS interface to the navigation tasks.
   </description>
 
   <maintainer email="wxh@vt.edu">Xihui Wu</maintainer>
