@@ -4,8 +4,12 @@ project(imu_ekf)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  std_msgs
   sensor_msgs
-  std_msgs)
+  geometry_msgs
+  bicycle_msgs
+  vesc_msgs
+)
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
@@ -15,8 +19,11 @@ catkin_package(
   CATKIN_DEPENDS
   rosbag
   rostopic
-  sensor_msgs
   std_msgs
+  sensor_msgs
+  geometry_msgs
+  bicycle_msgs
+  vesc_msgs
 )
 
 install(DIRECTORY launch
