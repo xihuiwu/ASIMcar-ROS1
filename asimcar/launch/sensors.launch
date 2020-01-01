@@ -7,7 +7,6 @@
   
   <!-- Sensors -->
   <node name="front_cam" type="camera" pkg="front_cam" output="screen" />
-  <node name="radar" type="radar.py" pkg="asimcar" output="screen" />
-  <include file="$(find razor_imu_m0_driver)/launch/driver_nodelet.launch" />
+  <node name="radar" type="radar.py" pkg="front_radar" output="screen" />
 
 </launch>
