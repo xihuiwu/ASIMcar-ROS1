@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>localization</name>
+  <name>ADAS</name>
   <version>0.0.1</version>
   <description>
     Metapackage for Advanced Driving Assistance System function.
