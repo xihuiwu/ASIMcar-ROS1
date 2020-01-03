@@ -281,4 +281,3 @@ while not rospy.is_shutdown():
         
 ser.close
 #f.close
-© 2020 GitHub, Inc.
