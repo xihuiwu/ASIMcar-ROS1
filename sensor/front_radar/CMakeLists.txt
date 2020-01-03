@@ -4,8 +4,6 @@ project(front_radar)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
-  rosbag
-  rostopic
 )
 
 find_package(OpenCV 3.4.5 REQUIRED)
@@ -17,6 +15,4 @@ include_directories(
 catkin_package(
   CATKIN_DEPENDS
   std_msgs
-  rosbag
-  rostopic
 )
