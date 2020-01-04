@@ -42,13 +42,13 @@ int main(int argc, char * argv[]) {
     nh_private.param<int>("baudrate", baudrate, 115200); 
     nh_private.param<std::string>("frame_id", frame_id, "laser_frame");
     nh_private.param<bool>("resolution_fixed", resolution_fixed, "true");
-    #nh_private.param<bool>("intensity", intensities, "false");
-    #nh_private.param<bool>("low_exposure", low_exposure, "false");
+    //nh_private.param<bool>("intensity", intensities, "false");
+    //nh_private.param<bool>("low_exposure", low_exposure, "false");
     nh_private.param<bool>("auto_reconnect", auto_reconnect, "true");
     nh_private.param<bool>("reversion", reversion, "false");
     nh_private.param<double>("angle_max", angle_max , 180);
     nh_private.param<double>("angle_min", angle_min , -180);
-    #nh_private.param<int>("samp_rate", samp_rate, 4); 
+    //nh_private.param<int>("samp_rate", samp_rate, 4); 
     nh_private.param<double>("range_max", max_range , 16.0);
     nh_private.param<double>("range_min", min_range , 0.08);
     nh_private.param<double>("frequency", _frequency , 7.0);
@@ -80,7 +80,7 @@ int main(int argc, char * argv[]) {
 
     laser.setSerialPort(port);
     laser.setSerialBaudrate(baudrate);
-    #laser.setIntensities(intensities);
+    //laser.setIntensities(intensities);
     laser.setMaxRange(max_range);
     laser.setMinRange(min_range);
     laser.setMaxAngle(angle_max);
@@ -88,9 +88,9 @@ int main(int argc, char * argv[]) {
     laser.setReversion(reversion);
     laser.setFixedResolution(resolution_fixed);
     laser.setAutoReconnect(auto_reconnect);
-    #laser.setExposure(low_exposure);
+    //laser.setExposure(low_exposure);
     laser.setScanFrequency(_frequency);
-    #laser.setSampleRate(samp_rate);
+    //laser.setSampleRate(samp_rate);
     laser.setIgnoreArray(ignore_array);
     laser.initialize();
 
