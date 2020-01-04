@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
 <package>
   <name>ydlidar</name>
-  <version>1.0</version>
+  <version>1.3.1</version>
   <description>The ydlidar package</description>
 
-  <maintainer email="shao@eaibot.com">shao</maintainer>
+  <maintainer email="wxh@vt.edu">shao</maintainer>
 
-  <author>Xihui Wu</author>
-  <maintainer email="wxh@vt.edu">Xihui Wu</maintainer>
-  <license>BSD</license>
+  <license>TODO</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-
+  
   <build_depend>rosconsole</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>sensor_msgs</build_depend>
@@ -20,4 +18,10 @@
   <run_depend>roscpp</run_depend>
   <run_depend>sensor_msgs</run_depend>
 
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
 </package>

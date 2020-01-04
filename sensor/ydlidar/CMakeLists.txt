@@ -1,11 +1,15 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(ydlidar)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+#add_definitions(-std=c++11) # Use C++11
 
 find_package(catkin REQUIRED COMPONENTS
+  rosconsole
   roscpp
   sensor_msgs
 )
+
+#add_subdirectory(sdk)
 
 set(SDK_PATH "./sdk/")
 
@@ -24,11 +28,13 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/sdk/src
 )
 
-add_executable(ydlidar_node src/ydlidar_node.cpp  ${HEADER_SRC})
+add_executable(ydlidar_node src/ydlidar_node.cpp  ${SDK_SRC})
+
 
 target_link_libraries(ydlidar_node
    ${catkin_LIBRARIES} 
  )
+
 
 install(TARGETS ydlidar_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
@@ -36,7 +42,10 @@ install(TARGETS ydlidar_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+
 install(DIRECTORY launch sdk
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
   USE_SOURCE_PERMISSIONS
 )
+
+
