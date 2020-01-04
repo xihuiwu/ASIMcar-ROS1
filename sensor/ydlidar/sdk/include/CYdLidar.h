@@ -1,4 +1,4 @@
-/*********************************************************************
+﻿/*********************************************************************
 * Software License Agreement (BSD License)
 *
 *  Copyright (c) 2018, EAIBOT, Inc.
@@ -140,3 +140,4 @@ class YDLIDAR_API CYdLidar {
   node_info *global_nodes;
 
 };	// End of class
+
