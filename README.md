@@ -18,5 +18,5 @@ catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 ```
 
 # To Do List
-[checkbox:unchecked]Reconfigure joy to low level control topic
-[checkbox:unchecked]Change Dense layer to CNN layer
+- [ ] Reconfigure joy to low level control topic
+- [ ] Change Dense layer to CNN layer
