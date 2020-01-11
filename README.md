@@ -5,7 +5,7 @@ This is the repository for autonomous RC car of ASIM Lab. The project is entirel
 
 * To enable extra 2 CPUs, read through [cpu_setup](https://github.com/xihuiwu/ASIMcar/blob/master/docs/asimcar_setup/cpu_setup.md).
 
-* To install OpenCV, refer to this [tutorial](https://github.com/xihuiwu/ASIMcar/blob/master/docs/JetsonTX2_setup/opencv_installation.md).
+* To install OpenCV with CUDA support, refer to this [tutorial](https://github.com/xihuiwu/ASIMcar/blob/master/docs/JetsonTX2_setup/opencv_installation.md).
 After OpenCV installation, delete ROS cv2.so which is located
 ```
 /opt/ros/{ROS_version}/lib/python2.7/dist-packages
