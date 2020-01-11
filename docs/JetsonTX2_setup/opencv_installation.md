@@ -1,3 +1,13 @@
+Download the opencv from [here](https://github.com/opencv/opencv) and opencv_contrib from [here](https://github.com/opencv/opencv_contrib). Then merge the opencv_contrib folder into the opencv folder.
+
+Go to the opencv directory
+```
+$ cd opencv-[version]
+$ mkdir build
+$ cd build
+```
+
+
 # Build Command
 ```
 $ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr \
