@@ -20,4 +20,4 @@ catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 # To Do List
 - [ ] Reconfigure joy to low level control topic
 - [ ] Create ROS2 package
-- [ ] Change Dense layer to CNN layer in the [file](https://github.com/xihuiwu/ASIMcar-ROS2/blob/master/autoencoder.py).
+- [ ] Change Dense layer to CNN layer in the [file](https://github.com/xihuiwu/ASIMcar-ROS2/blob/master/cnn_lane_detection/src/autoencoder.py).
