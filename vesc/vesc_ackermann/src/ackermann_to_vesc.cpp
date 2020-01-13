@@ -24,9 +24,16 @@ AckermannToVesc::AckermannToVesc(ros::NodeHandle nh, ros::NodeHandle private_nh)
     return;
   if (!getRequiredParam(nh, "/vesc/steering_angle_to_servo_offset", steering_to_servo_offset_))
     return;
+  if (!getRequiredParam(nh, "/vesc/current_to_current_gain", torque_to_current_gain_))
+    return;
+  if (!getRequiredParam(nh, "/asimcar/vehicle_mass", vehicle_mass_))
+    return;
+  if (!getRequiredParam(nh, "/asimcar/wheel_radius", wheel_radius_))
+    return;
 
   // create publishers to vesc electric-RPM (speed) and servo commands
   erpm_pub_ = nh.advertise<std_msgs::Float64>("commands/motor/speed", 10);
+  current_pub = nh.advertise<std_msgs::Float64>("commands/motor/current", 10);
   servo_pub_ = nh.advertise<std_msgs::Float64>("commands/servo/position", 10);
 
   // subscribe to ackermann topic
@@ -43,11 +50,16 @@ void AckermannToVesc::ackermannCmdCallback(const AckermannMsgPtr& cmd)
   // calc steering angle (servo)
   std_msgs::Float64::Ptr servo_msg(new std_msgs::Float64);
   servo_msg->data = steering_to_servo_gain_ * cmd->drive.steering_angle + steering_to_servo_offset_;
+  
+  // calc current (acceleration)
+  std_msgs::Float64::Ptr current_msg(new std_msgs::Float64);
+  current_msg->data = torque_to_current_gain_ * cmd->drive.accleration * vehicle_mass_ * wheel_radius_;
 
   // publish
   if (ros::ok()) {
     erpm_pub_.publish(erpm_msg);
     servo_pub_.publish(servo_msg);
+    current_pub_.publish(current_msg);
   }
 }
 
