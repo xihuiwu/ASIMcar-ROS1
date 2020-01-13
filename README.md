@@ -21,7 +21,8 @@ catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 *2020-1-13*
 - [ ] Collect lane pictures
 - [ ] Add Laser SLAM package
-- [ ] Install openvslam
+- [ ] Install Opencv 3.4.9
+- [x] Install openvslam
 
 *2020-1-12*
 - [x] Reconfigure joy to vesc controller topic
