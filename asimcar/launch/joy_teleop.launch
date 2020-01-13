@@ -2,15 +2,16 @@
 <launch>
 
   <!-- Config -->
-  <arg name="port" default="/dev/input/js3" />
+  <arg name="port" default="/dev/input/js1" />
   
   <!-- Teleop -->
   <node name="joy_node" type="joy_node" pkg="joy" output="screen" >
     <param name="dev" value="$(arg port)" />
+    <param name="autorepeat_rate" value="20.0" />
   </node>
   
-  <node name="joy_teleop_node" type="joy_teleop_node" pkg="asimcar" output="screen" />
+  <node name="joy_teleop_node" type="joy_teleop_node.py" pkg="asimcar" output="screen" />
 
-  <node name="joy_throttler" type="throttle" pkg="topic_tools" args="messages /vesc/ackermann_cmd 20 /vesc/ackermann_cmd_throttled" />
+  <!-- <node name="joy_throttler" type="throttle" pkg="topic_tools" args="messages /vesc/ackermann_cmd 20 /vesc/ackermann_cmd_throttled" /> -->
   
 </launch>
