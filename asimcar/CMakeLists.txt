@@ -26,6 +26,6 @@ install(DIRECTORY launch
 )
 
 catkin_install_python(PROGRAMS
-  joy_teleop_node.py
+  src/joy_teleop_node.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
