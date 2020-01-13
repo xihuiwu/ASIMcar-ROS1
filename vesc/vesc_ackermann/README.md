@@ -1,5 +1,5 @@
 # ackermann_to_vesc_node
-parameters: * /vesc/speed_to_erpm_gain
+* parameters: * /vesc/speed_to_erpm_gain
 input topics: 
 output topics:  
 
