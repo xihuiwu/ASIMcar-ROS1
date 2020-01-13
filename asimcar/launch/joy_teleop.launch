@@ -8,5 +8,9 @@
   <node name="joy_node" type="joy_node" pkg="joy" output="screen" >
     <param name="dev" value="$(arg port)" />
   </node>
+  
+  <node name="joy_teleop_node" type="joy_teleop_node" pkg="asimcar" output="screen" />
 
+  <node name="joy_throttler" type="throttle" pkg="topic_tools" args="messages /vesc/ackermann_cmd 20 /vesc/ackermann_cmd_throttled" />
+  
 </launch>
