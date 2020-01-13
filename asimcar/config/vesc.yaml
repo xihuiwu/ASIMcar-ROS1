@@ -1,8 +1,8 @@
 asimcar:
     mass:
-    wheelbase: .256
-    wheel_radius: 
-    gear_ratio:
+    wheelbase: .256 # meter
+    wheel_radius: 0.0265 # meter
+    gear_ratio: 6.87
 
 vesc:
     # motor torque constant
