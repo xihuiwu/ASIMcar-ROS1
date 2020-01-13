@@ -1,4 +1,3 @@
-  
 <?xml version="1.0"?>
 <package>
   <name>sensor</name>
@@ -14,6 +13,8 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <run_depend>front_cam</run_depend>
+  <run_depend>front_radar</run_depend>
+  <run_depend>razor_imu_9dof</run_depend>
   <run_depend>ydlidar</run_depend>
 
   <export>
