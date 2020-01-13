@@ -16,3 +16,8 @@ catkin_package(
   CATKIN_DEPENDS
   std_msgs
 )
+
+catkin_install_python(PROGRAMS
+   src/radar.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
