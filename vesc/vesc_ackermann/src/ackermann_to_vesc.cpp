@@ -24,7 +24,7 @@ AckermannToVesc::AckermannToVesc(ros::NodeHandle nh, ros::NodeHandle private_nh)
     return;
   if (!getRequiredParam(nh, "/vesc/steering_angle_to_servo_offset", steering_to_servo_offset_))
     return;
-  if (!getRequiredParam(nh, "/vesc/current_to_current_gain", torque_to_current_gain_))
+  if (!getRequiredParam(nh, "/vesc/torque_constant", torque_constant_))
     return;
   if (!getRequiredParam(nh, "/asimcar/mass", vehicle_mass_))
     return;
@@ -55,7 +55,7 @@ void AckermannToVesc::ackermannCmdCallback(const AckermannMsgPtr& cmd)
   
   // calc current (acceleration)
   std_msgs::Float64::Ptr current_msg(new std_msgs::Float64);
-  current_msg->data = torque_to_current_gain_ * cmd->drive.accleration * vehicle_mass_ * wheel_radius_;
+  current_msg->data = (cmd->drive.accleration * vehicle_mass_ * wheel_radius_) * 2 / torque_constant_;
 
   // publish
   if (ros::ok()) {
