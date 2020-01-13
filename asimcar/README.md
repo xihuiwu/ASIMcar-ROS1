@@ -3,7 +3,7 @@ Subscribed Topic:
 * /joy
 
 Published Topic:
-* /vesc/ackermann_cmd (actual topic is /vesc/ackermann_cmd_throttled)
+* /vesc/ackermann_cmd
 
 # command_interpreter
 Subscribed Topic:
