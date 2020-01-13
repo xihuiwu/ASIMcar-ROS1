@@ -6,8 +6,6 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-find_package(OpenCV 3.4.5 REQUIRED)
-
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
