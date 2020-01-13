@@ -16,10 +16,11 @@ vesc:
     servo_smoother_rate: 75.0 # messages/sec
 
     # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
-    current_to_torque_gain: 0.0002857
+    torque_to_current_gain: 0.0002857
+    torque_to_current_offset: 0.0
 
     # current smoother - limits jerk and smooths anything above limit
-    max_jerk: 3.2 # radians/second
+    max_jerk: 3.2 # meters/second^3
     current_smoother_rate: 75.0 # messages/sec
 
     tachometer_ticks_to_meters_gain: 0.00225
