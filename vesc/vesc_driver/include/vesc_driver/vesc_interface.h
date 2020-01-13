@@ -91,7 +91,6 @@ public:
   void setSpeed(double speed);
   void setPosition(double position);
   void setServo(double servo);
-  void setHandbrake(double handbrake);
 
 private:
   // Pimpl - hide serial port members from class users

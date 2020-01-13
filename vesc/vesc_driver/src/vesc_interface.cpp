@@ -29,7 +29,7 @@ public:
 
   static void* rxThreadHelper(void *context)
   {
-    return ((VescInterface::Impl*)context)->rxThread(); // 所以又指回到自己這個object 為了節省記憶體加上為了自己使用 thread 去等待
+    return ((VescInterface::Impl*)context)->rxThread();
   }
 
   pthread_t rx_thread_;
@@ -40,7 +40,7 @@ public:
   VescFrame::CRC send_crc_;
 };
 
-void* VescInterface::Impl::rxThread(void) // packet recive
+void* VescInterface::Impl::rxThread(void)
 {
   Buffer buffer;
   buffer.reserve(4096);
@@ -120,7 +120,7 @@ void* VescInterface::Impl::rxThread(void) // packet recive
 VescInterface::VescInterface(const std::string& port,
                              const PacketHandlerFunction& packet_handler,
                              const ErrorHandlerFunction& error_handler) :
-  impl_(new Impl()) //boost::scoped_ptr<Impl> impl_
+  impl_(new Impl())
 {
   setPacketHandler(packet_handler);
   setErrorHandler(error_handler);
@@ -168,7 +168,7 @@ void VescInterface::connect(const std::string& port)
   // start up a monitoring thread
   impl_->rx_thread_run_ = true;
   int result =
-    pthread_create(&impl_->rx_thread_, NULL, &VescInterface::Impl::rxThreadHelper, impl_.get()); //impl_.get -> 返回所存儲的指針
+    pthread_create(&impl_->rx_thread_, NULL, &VescInterface::Impl::rxThreadHelper, impl_.get());
   assert(0 == result);
 }
 
@@ -240,11 +240,5 @@ void VescInterface::setServo(double servo)
 {
   send(VescPacketSetServoPos(servo));
 }
-
-void VescInterface::setHandbrake(double handbrake)
-{
-  send(VescPacketSetHandbrake(handbrake));
-}
-
 
 } // namespace vesc_driver
