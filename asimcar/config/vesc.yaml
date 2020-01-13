@@ -5,6 +5,9 @@ asimcar:
     gear_ratio:
 
 vesc:
+    # motor torque constant
+    torque_constant: 3500
+
     # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
     speed_to_erpm_gain: 1988
     speed_to_erpm_offset: 0.0
