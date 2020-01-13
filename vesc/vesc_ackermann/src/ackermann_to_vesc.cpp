@@ -26,7 +26,7 @@ AckermannToVesc::AckermannToVesc(ros::NodeHandle nh, ros::NodeHandle private_nh)
     return;
   if (!getRequiredParam(nh, "/vesc/current_to_current_gain", torque_to_current_gain_))
     return;
-  if (!getRequiredParam(nh, "/asimcar/vehicle_mass", vehicle_mass_))
+  if (!getRequiredParam(nh, "/asimcar/mass", vehicle_mass_))
     return;
   if (!getRequiredParam(nh, "/asimcar/wheel_radius", wheel_radius_))
     return;
