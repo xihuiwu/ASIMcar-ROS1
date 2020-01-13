@@ -1,6 +1,17 @@
 # joy_teleop_node
 Subscribed Topic:
-/joy
+* /joy
 
 Published Topic:
 * /vesc/ackermann_cmd (actual topic is /vesc/ackermann_cmd_throttled)
+
+# command_interpreter
+Subscribed Topic:
+* /vesc/commands/motor/unsmoothed_speed
+* /vesc/commands/servo/unsmoothed_position
+* /vesc/commands/servo/unsmoothed_current
+
+Published Topic:
+* /vesc/commands/motor/speed
+* /vesc/commands/servo/position
+* /vesc/commands/motor/current
