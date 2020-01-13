@@ -1,34 +1,36 @@
+asimcar:
+    mass:
+    wheelbase: .256
+    wheel_radius: 
+    gear_ratio:
+
 vesc:
     # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
     speed_to_erpm_gain: 1988
     speed_to_erpm_offset: 0.0
 
     # speed smoother - limits acceleration and smooths anything above limit
-    max_acceleration: 3.5 # meters/second^2
-    throttle_smoother_rate: 75.0 # messages/sec
+    #max_acceleration: 3.5 # meters/second^2
+    #throttle_smoother_rate: 75.0 # messages/sec
 
     # servo value (0 to 1) =  steering_angle_to_servo_gain * steering angle (radians) + steering_angle_to_servo_offset
     steering_angle_to_servo_gain: -1.0472
     steering_angle_to_servo_offset: 0.58
 
     # servo smoother - limits rotation speed and smooths anything above limit
-    max_servo_speed: 3.2 # radians/second
-    servo_smoother_rate: 75.0 # messages/sec
+    #max_servo_speed: 3.2 # radians/second
+    #servo_smoother_rate: 75.0 # messages/sec
 
-    # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
+    # current (A) = torque_to_current_gain * acceleration (meters / second^2) * mass * radius
     torque_to_current_gain: 0.0002857
-    torque_to_current_offset: 0.0
 
     # current smoother - limits jerk and smooths anything above limit
-    max_jerk: 3.2 # meters/second^3
-    current_smoother_rate: 75.0 # messages/sec
+    #max_jerk: 3.2 # meters/second^3
+    #current_smoother_rate: 75.0 # messages/sec
 
     tachometer_ticks_to_meters_gain: 0.00225
     # publish odom to base link tf
     vesc_to_odom/publish_tf: false
-
-    # car wheelbase is about 25.6cm 
-    wheelbase: .256
 
     vesc_driver:
         port: /dev/VESC
