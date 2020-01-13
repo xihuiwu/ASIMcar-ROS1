@@ -6,7 +6,7 @@ parameters:
 * /vesc/steering_angle_to_servo_offset
 
 subscribed topics: 
-* /vesc/ackermann_cmd
+* /vesc/ackermann_cmd_throttled
 
 published topics: 
 * /vesc/commands/motor/speed
