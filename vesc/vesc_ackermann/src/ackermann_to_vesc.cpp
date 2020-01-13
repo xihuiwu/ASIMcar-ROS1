@@ -30,6 +30,8 @@ AckermannToVesc::AckermannToVesc(ros::NodeHandle nh, ros::NodeHandle private_nh)
     return;
   if (!getRequiredParam(nh, "/asimcar/wheel_radius", wheel_radius_))
     return;
+  if (!getRequiredParam(nh, "/asimcar/gear_ratio", gear_ratio_))
+    return;
 
   // create publishers to vesc electric-RPM (speed) and servo commands
   erpm_pub_ = nh.advertise<std_msgs::Float64>("commands/motor/speed", 10);
