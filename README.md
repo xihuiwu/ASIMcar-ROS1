@@ -23,6 +23,6 @@ catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 - [ ] Add Laser SLAM package
 
 *2020-1-12*
-- [x] Reconfigure joy to low level control topic
-- [x] Create ROS2 package
-- [x] Change Dense layer to CNN layer in the ROS2 package.
+- [x] Reconfigure joy to vesc controller topic
+- [x] Create ROS2 package for autoencoder
+- [x] Change Dense layer to CNN layer in the ROS2 autoencoder package
