@@ -24,6 +24,7 @@ catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 
 # To Do List
 *2020-1-13*
+- [ ] Change ports name and permissions
 - [ ] Collect lane pictures
 - [ ] Add Laser SLAM package
 - [x] Install Opencv 3.4.9
