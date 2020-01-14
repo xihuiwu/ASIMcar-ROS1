@@ -5,9 +5,6 @@ asimcar:
     gear_ratio: 6.87
 
 vesc:
-    # motor torque constant
-    torque_constant: 3500
-
     # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
     speed_to_erpm_gain: 1988
     speed_to_erpm_offset: 0.0
@@ -24,8 +21,8 @@ vesc:
     max_servo_speed: 3.2 # radians/second
     servo_smoother_rate: 75.0 # messages/sec
 
-    # current (A) = torque_to_current_gain * acceleration (meters / second^2) * mass * radius
-    torque_to_current_gain: 0.0002857
+    # motor torque constant
+    torque_constant: 3500
 
     # current smoother - limits jerk and smooths anything above limit
     max_jerk: 3.2 # meters/second^3
