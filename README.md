@@ -21,7 +21,7 @@ catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 *2020-1-13*
 - [ ] Collect lane pictures
 - [ ] Add Laser SLAM package
-- [ ] Install Opencv 3.4.9
+- [x] Install Opencv 3.4.9
 - [x] Install openvslam
 
 *2020-1-12*
