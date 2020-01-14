@@ -1,5 +1,13 @@
 joy:
-    mass:
-    wheelbase: .256 # meter
-    wheel_radius: 0.0265 # meter
-    gear_ratio: 6.87
+    deadzone : 0.05
+    frequency: 80.0 # msg/sec
+
+    steering_axis: 3 # Right Joystick
+    speed_axis: 2 # Left Trigger
+    acceleration_axis: 2 # Left Trigger
+    brake_axis: 5 # Right Trigger
+    switch_mode: 0 # BUtton 'A'
+    switch_direciton: 4 # Left Bump
+    
+    speed_scale: 1
+    acceleration_scale: 1
