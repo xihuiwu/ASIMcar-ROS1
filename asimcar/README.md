@@ -1,7 +1,4 @@
-# joy_teleop_node
-Subscribed Topic:
-* /joy
-
+# joy_teleop_node (require pygame library)
 Published Topic:
 * /vesc/ackermann_cmd
 
