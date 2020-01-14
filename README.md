@@ -17,6 +17,11 @@ could be deleted or renamed.
 catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 ```
 
+# Extra Dependencies
+[vision_opencv](https://github.com/ros-perception/vision_opencv)
+[PyGame](https://www.pygame.org/wiki/CompileUbuntu?parent=)
+
+
 # To Do List
 *2020-1-13*
 - [ ] Collect lane pictures
