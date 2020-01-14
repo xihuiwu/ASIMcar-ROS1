@@ -1,5 +1,5 @@
 asimcar:
-    mass:
+    mass: 10 # kg
     wheelbase: .256 # meter
     wheel_radius: 0.0265 # meter
     gear_ratio: 6.87
@@ -13,23 +13,23 @@ vesc:
     speed_to_erpm_offset: 0.0
 
     # speed smoother - limits acceleration and smooths anything above limit
-    #max_acceleration: 3.5 # meters/second^2
-    #throttle_smoother_rate: 75.0 # messages/sec
+    max_acceleration: 3.5 # meters/second^2
+    throttle_smoother_rate: 75.0 # messages/sec
 
     # servo value (0 to 1) =  steering_angle_to_servo_gain * steering angle (radians) + steering_angle_to_servo_offset
     steering_angle_to_servo_gain: -1.0472
     steering_angle_to_servo_offset: 0.58
 
     # servo smoother - limits rotation speed and smooths anything above limit
-    #max_servo_speed: 3.2 # radians/second
-    #servo_smoother_rate: 75.0 # messages/sec
+    max_servo_speed: 3.2 # radians/second
+    servo_smoother_rate: 75.0 # messages/sec
 
     # current (A) = torque_to_current_gain * acceleration (meters / second^2) * mass * radius
     torque_to_current_gain: 0.0002857
 
     # current smoother - limits jerk and smooths anything above limit
-    #max_jerk: 3.2 # meters/second^3
-    #current_smoother_rate: 75.0 # messages/sec
+    max_jerk: 3.2 # meters/second^3
+    current_smoother_rate: 75.0 # messages/sec
 
     tachometer_ticks_to_meters_gain: 0.00225
     # publish odom to base link tf

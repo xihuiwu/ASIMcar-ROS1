@@ -2,13 +2,14 @@
 <launch>
 
   <!-- Config -->
-  <arg name="port" default="/dev/input/js0" />
+  <arg name="joy_config" default="$(find asimcar)/config/joy.yaml" />
+  <rosparam file="$(arg joy_config)" command="load" />
   
   <!-- Teleop -->
-  <node name="joy_node" type="joy_node" pkg="joy" output="screen" >
+  <!-- <node name="joy_node" type="joy_node" pkg="joy" output="screen" >
     <param name="dev" value="$(arg port)" />
     <param name="autorepeat_rate" value="190.0" />
-  </node>
+  </node> -->
   
   <node name="joy_teleop_node" type="joy_teleop_node.py" pkg="asimcar" output="screen" />
   

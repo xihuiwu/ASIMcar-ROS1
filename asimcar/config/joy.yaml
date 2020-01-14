@@ -1,5 +1,4 @@
 joy:
-    port: 0
     deadzone : 0.05
     frequency: 80.0 # msg/sec
 
@@ -10,5 +9,5 @@ joy:
     switch_mode: 0 # BUtton 'A'
     switch_direciton: 4 # Left Bump
     
-    speed_scale: 1 # 1 meter/sec
-    acceleration_scale: 1 # 1 meter/sec^2
+    speed_scale: 5 # meter/sec
+    acceleration_scale: 1 # meter/sec^2
