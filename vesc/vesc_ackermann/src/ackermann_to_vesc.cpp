@@ -35,7 +35,7 @@ AckermannToVesc::AckermannToVesc(ros::NodeHandle nh, ros::NodeHandle private_nh)
 
   // create publishers to vesc electric-RPM (speed) and servo commands
   erpm_pub_ = nh.advertise<std_msgs::Float64>("commands/motor/speed", 10);
-  current_pub = nh.advertise<std_msgs::Float64>("commands/motor/current", 10);
+  current_pub_ = nh.advertise<std_msgs::Float64>("commands/motor/current", 10);
   servo_pub_ = nh.advertise<std_msgs::Float64>("commands/servo/position", 10);
 
   // subscribe to ackermann topic
@@ -55,7 +55,7 @@ void AckermannToVesc::ackermannCmdCallback(const AckermannMsgPtr& cmd)
   
   // calc current (acceleration)
   std_msgs::Float64::Ptr current_msg(new std_msgs::Float64);
-  current_msg->data = (cmd->drive.accleration * vehicle_mass_ * wheel_radius_) * 4 / gear_ratio_ / torque_constant_;
+  current_msg->data = (cmd->drive.acceleration * vehicle_mass_ * wheel_radius_) * 4 / gear_ratio_ / torque_constant_;
 
   // publish
   if (ros::ok()) {

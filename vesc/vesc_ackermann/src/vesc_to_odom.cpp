@@ -30,7 +30,7 @@ VescToOdom::VescToOdom(ros::NodeHandle nh, ros::NodeHandle private_nh) :
       return;
     if (!getRequiredParam(nh, "/vesc/steering_angle_to_servo_offset", steering_to_servo_offset_))
       return;
-    if (!getRequiredParam(nh, "/vesc/wheelbase", wheelbase_))
+    if (!getRequiredParam(nh, "/asimcar/wheelbase", wheelbase_))
       return;
   }
   private_nh.param("publish_tf", publish_tf_, publish_tf_);

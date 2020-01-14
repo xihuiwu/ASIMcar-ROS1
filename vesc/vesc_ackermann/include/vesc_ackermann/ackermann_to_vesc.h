@@ -20,12 +20,14 @@ private:
   // conversion gain and offset
   double speed_to_erpm_gain_, speed_to_erpm_offset_;
   double steering_to_servo_gain_, steering_to_servo_offset_;
+  double torque_constant_, vehicle_mass_, wheel_radius_, gear_ratio_;
 
   /** @todo consider also providing an interpolated look-up table conversion */
 
   // ROS services
   ros::Publisher erpm_pub_;
   ros::Publisher servo_pub_;
+  ros::Publisher current_pub_;
   ros::Subscriber ackermann_sub_;
 
   // ROS callbacks
