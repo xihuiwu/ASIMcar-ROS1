@@ -24,10 +24,12 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 
 
 # To Do List
-*2020-1-13*
+*2020-1-14*
 - [ ] Change ports name and permissions
 - [ ] Collect lane pictures
 - [ ] Add Laser SLAM package
+
+*2020-1-13*
 - [x] Install Opencv 3.4.9
 - [x] Install openvslam
 
