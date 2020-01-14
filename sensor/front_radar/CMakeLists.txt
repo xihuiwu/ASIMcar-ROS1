@@ -16,6 +16,6 @@ catkin_package(
 )
 
 catkin_install_python(PROGRAMS
-   src/radar.py
+   src/radar_node.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
