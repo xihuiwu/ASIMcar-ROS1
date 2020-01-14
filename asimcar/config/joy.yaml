@@ -9,5 +9,5 @@ joy:
     switch_mode: 0 # BUtton 'A'
     switch_direciton: 4 # Left Bump
     
-    speed_scale: 1
-    acceleration_scale: 1
+    speed_scale: 1 # 1 meter/sec
+    acceleration_scale: 1 # 1 meter/sec^2
