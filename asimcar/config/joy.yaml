@@ -1,4 +1,5 @@
 joy:
+    port: 0
     deadzone : 0.05
     frequency: 80.0 # msg/sec
 
