@@ -55,7 +55,7 @@ void AckermannToVesc::ackermannCmdCallback(const AckermannMsgPtr& cmd)
   
   // calc current (acceleration)
   std_msgs::Float64::Ptr current_msg(new std_msgs::Float64);
-  current_msg->data = (cmd->drive.accleration * vehicle_mass_ * wheel_radius_) * 2 / torque_constant_;
+  current_msg->data = (cmd->drive.accleration * vehicle_mass_ * wheel_radius_) * 4 / gear_ratio_ / torque_constant_;
 
   // publish
   if (ros::ok()) {
