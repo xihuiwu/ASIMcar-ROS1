@@ -7,19 +7,19 @@ asimcar:
 vesc:
     smooth_rate: 80.0
 
-    # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + erpm_offset
-    max_acceleration: 3.5 # meters/second^2
-    speed_to_erpm_gain: 1988
-    erpm_offset: 0.0
+    # erpm (electrical rpm) = speed_to_erpm_gain * speed (m/s) + erpm_offset
+    max_acceleration: 3.5 # m/s^2
+    speed_to_erpm_gain: 1988 # m/s -> rpm
+    erpm_offset: 0.0 # rpm
 
-    # servo value (0 to 1) =  steering_angle_to_servo_gain * steering angle (radians) + servo_offset
-    max_servo_speed: 3.2 # radians/second
-    steering_angle_to_servo_gain: -1.0472
-    servo_offset: 0.58
+    # servo value (0 to 1) =  steering_angle_to_servo_gain * steering_angle (radians) + servo_offset
+    max_servo_speed: 3.2 # rad/sec
+    steering_angle_to_servo_gain: -1.0472 # rad -> servo value
+    servo_offset: 0.58 # servo value
 
-    # current = acceleration * mass * wheel_radius * 4 / gear_ratio / torque_constant + current_offset
-    max_jerk: 3.2 # meters/second^3
-    torque_constant: 3500
+    # current = mass * wheel_radius * 4 / gear_ratio / torque_constant * acceleration (m/s^2)+ current_offset
+    max_jerk: 3.2 # m/s^3
+    torque_constant: 3500 # kV
 
     tachometer_ticks_to_meters_gain: 0.00225
     # publish odom to base link tf
