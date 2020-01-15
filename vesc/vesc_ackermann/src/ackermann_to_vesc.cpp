@@ -18,11 +18,11 @@ AckermannToVesc::AckermannToVesc(ros::NodeHandle nh, ros::NodeHandle private_nh)
   // get conversion parameters
   if (!getRequiredParam(nh, "/vesc/speed_to_erpm_gain", speed_to_erpm_gain_))
     return;
-  if (!getRequiredParam(nh, "/vesc/speed_to_erpm_offset", speed_to_erpm_offset_))
+  if (!getRequiredParam(nh, "/vesc/erpm_offset", erpm_offset_))
     return;
   if (!getRequiredParam(nh, "/vesc/steering_angle_to_servo_gain", steering_to_servo_gain_))
     return;
-  if (!getRequiredParam(nh, "/vesc/steering_angle_to_servo_offset", steering_to_servo_offset_))
+  if (!getRequiredParam(nh, "/vesc/servo_offset", servo_offset_))
     return;
   if (!getRequiredParam(nh, "/vesc/torque_constant", torque_constant_))
     return;
@@ -31,6 +31,8 @@ AckermannToVesc::AckermannToVesc(ros::NodeHandle nh, ros::NodeHandle private_nh)
   if (!getRequiredParam(nh, "/asimcar/wheel_radius", wheel_radius_))
     return;
   if (!getRequiredParam(nh, "/asimcar/gear_ratio", gear_ratio_))
+    return;
+  if (!getRequiredParam(nh, "/vesc/current_offset", current_offset_))
     return;
 
   // create publishers to vesc electric-RPM (speed) and servo commands
@@ -47,15 +49,15 @@ void AckermannToVesc::ackermannCmdCallback(const AckermannMsgPtr& cmd)
 {
   // calc vesc electric RPM (speed)
   std_msgs::Float64::Ptr erpm_msg(new std_msgs::Float64);
-  erpm_msg->data = speed_to_erpm_gain_ * cmd->drive.speed + speed_to_erpm_offset_;
+  erpm_msg->data = speed_to_erpm_gain_ * cmd->drive.speed + erpm_offset_;
 
   // calc steering angle (servo)
   std_msgs::Float64::Ptr servo_msg(new std_msgs::Float64);
-  servo_msg->data = steering_to_servo_gain_ * cmd->drive.steering_angle + steering_to_servo_offset_;
+  servo_msg->data = steering_to_servo_gain_ * cmd->drive.steering_angle + servo_offset_;
   
   // calc current (acceleration)
   std_msgs::Float64::Ptr current_msg(new std_msgs::Float64);
-  current_msg->data = (cmd->drive.acceleration * vehicle_mass_ * wheel_radius_) * 4 / gear_ratio_ / torque_constant_;
+  current_msg->data = cmd->drive.acceleration * vehicle_mass_ * wheel_radius_ * 4 / gear_ratio_ / torque_constant_ + current_offset_;
 
   // publish
   if (ros::ok()) {
