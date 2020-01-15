@@ -19,36 +19,38 @@ class InterpolateThrottle:
 
 		self.current_input_topic =  rospy.get_param('~current_input_topic', '/vesc/commands/motor/current_unsmoothed')
 		self.current_output_topic = rospy.get_param('~current_input_topic', '/vesc/commands/motor/current')
-
+		
+		self.smooth_rate = rospy.get_param('/vesc/smooth_rate')
+		
 		self.max_acceleration = rospy.get_param('/vesc/max_acceleration')
-		self.throttle_smoother_rate = rospy.get_param('/vesc/throttle_smoother_rate')
 		self.speed_to_erpm_gain = rospy.get_param('/vesc/speed_to_erpm_gain')
 		self.max_rpm = rospy.get_param('/vesc/vesc_driver/speed_max')
 		self.min_rpm = rospy.get_param('/vesc/vesc_driver/speed_min')
 
-		self.max_servo_speed = rospy.get_param('/vesc/max_servo_speed')
+		self.max_steering_speed = rospy.get_param('/vesc/max_steering_speed')
 		self.steering_angle_to_servo_gain = rospy.get_param('/vesc/steering_angle_to_servo_gain')
-		self.servo_smoother_rate = rospy.get_param('/vesc/servo_smoother_rate')
 		self.max_servo = rospy.get_param('/vesc/vesc_driver/servo_max')
 		self.min_servo = rospy.get_param('/vesc/vesc_driver/servo_min')
 
 		self.max_jerk = rospy.get_param('/vesc/max_jerk')
-		self.torque_to_current_gain = rospy.get_param('/vesc/torque_to_current_gain')
-		self.servo_smoother_rate = rospy.get_param('/vesc/servo_smoother_rate')
+		self.torque_constant = rospy.get_param('/vesc/torque_constant')
 		self.max_current = rospy.get_param('/vesc/vesc_driver/current_max')
 		self.min_current = rospy.get_param('/vesc/vesc_driver/current_min')
 
 		# Variables
-		self.last_rpm = rospy.get_param('/vesc/speed_to_erpm_offset')
+		self.vehicle_mass = rospy.get_param('/asimcar/mass')
+		self.wheel_radius = rospy.get_param('/asimcar/wheel_radius')
+		self.gear_ratio = rospy.get_param('/asimcar/gear_ratio')
+		self.torque_constant = rospy.get_param('/vesc/torque_constant')
+		
+		self.last_rpm = rospy.get_param('/vesc/erpm_offset')
 		self.desired_rpm = self.last_rpm
 
-		self.last_servo = rospy.get_param('/vesc/steering_angle_to_servo_offset')
+		self.last_servo = rospy.get_param('/vesc/servo_offset')
 		self.desired_servo_position = self.last_servo
-
-		'''
-		self.last_current = rospy.get_param('/vesc/torque_to_current_offset')
+		
+		self.last_current = rospy.get_param('/vesc/current_offset')
 		self.desired_current = self.last_current
-		'''
 
 		# Create topic subscribers and publishers
 		self.rpm_output = rospy.Publisher(self.rpm_output_topic, Float64,queue_size=1)
@@ -59,16 +61,14 @@ class InterpolateThrottle:
 		rospy.Subscriber(self.servo_input_topic, Float64, self._process_servo_command)
 		rospy.Subscriber(self.current_input_topic, Float64, self._process_current_command)
 
-		self.max_delta_servo = abs(self.steering_angle_to_servo_gain * self.max_servo_speed / self.servo_smoother_rate)
-		rospy.Timer(rospy.Duration(1.0/self.servo_smoother_rate), self._publish_servo_command)
+		self.max_delta_servo = abs(self.steering_angle_to_servo_gain * self.max_steering_speed / self.smooth_rate)
+		rospy.Timer(rospy.Duration(1.0/self.smooth_rate), self._publish_servo_command)
 
-		self.max_delta_rpm = abs(self.speed_to_erpm_gain * self.max_acceleration / self.throttle_smoother_rate)
-		rospy.Timer(rospy.Duration(1.0/self.max_delta_rpm), self._publish_throttle_command)
+		self.max_delta_rpm = abs(self.speed_to_erpm_gain * self.max_acceleration / self.smooth_rate)
+		rospy.Timer(rospy.Duration(1.0/self.smooth_rate), self._publish_rpm_command)
 
-		'''
-		self.max_delta_current = abs(self.current_to_torque_gain * self.max_jerk / self.current_smoother_rate)
-		rospy.Timer(rospy.Duration(1.0/self.max_delta_current), self._publish_current_command)
-		'''
+		self.max_delta_current = abs(self.max_jerk * self.vehicle_mass * self.wheel_radius * 4 / self.gear_ratio / self.torque_constant / self.smooth_rate)
+		rospy.Timer(rospy.Duration(1.0/self.smooth_rate), self._publish_current_command)
 
 		# run the node
 		self._run()
@@ -77,7 +77,7 @@ class InterpolateThrottle:
 	def _run(self):
 		rospy.spin()
 
-	def _publish_throttle_command(self, evt):
+	def _publish_rpm_command(self, evt):
 		desired_delta = self.desired_rpm-self.last_rpm
 		clipped_delta = max(min(desired_delta, self.max_delta_rpm), -self.max_delta_rpm)
 		smoothed_rpm = self.last_rpm + clipped_delta
@@ -85,7 +85,7 @@ class InterpolateThrottle:
 		# print self.desired_rpm, smoothed_rpm
 		self.rpm_output.publish(Float64(smoothed_rpm))
             
-	def _process_throttle_command(self,msg):
+	def _process_rpm_command(self,msg):
 		input_rpm = msg.data
 		# Do some sanity clipping
 		input_rpm = min(max(input_rpm, self.min_rpm), self.max_rpm)
@@ -117,7 +117,7 @@ class InterpolateThrottle:
 		# Do some sanity clipping
 		input_current = min(max(input_current, self.min_current), self.max_current)
 		# set the target servo position
-		self.desired_current_position = input_current
+		self.desired_current = input_current
 
 # Boilerplate node spin up. 
 if __name__ == '__main__':
