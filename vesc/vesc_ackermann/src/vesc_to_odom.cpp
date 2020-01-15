@@ -23,12 +23,12 @@ VescToOdom::VescToOdom(ros::NodeHandle nh, ros::NodeHandle private_nh) :
   private_nh.param("use_servo_cmd_to_calc_angular_velocity", use_servo_cmd_, use_servo_cmd_);
   if (!getRequiredParam(nh, "/vesc/speed_to_erpm_gain", speed_to_erpm_gain_))
     return;
-  if (!getRequiredParam(nh, "/vesc/speed_to_erpm_offset", speed_to_erpm_offset_))
+  if (!getRequiredParam(nh, "/vesc/erpm_offset", erpm_offset_))
     return;
   if (use_servo_cmd_) {
     if (!getRequiredParam(nh, "/vesc/steering_angle_to_servo_gain", steering_to_servo_gain_))
       return;
-    if (!getRequiredParam(nh, "/vesc/steering_angle_to_servo_offset", steering_to_servo_offset_))
+    if (!getRequiredParam(nh, "/vesc/servo_offset", servo_offset_))
       return;
     if (!getRequiredParam(nh, "/asimcar/wheelbase", wheelbase_))
       return;
@@ -58,11 +58,11 @@ void VescToOdom::vescStateCallback(const vesc_msgs::VescStateStamped::ConstPtr& 
     return;
 
   // convert to engineering units
-  double current_speed = ( state->state.speed - speed_to_erpm_offset_ ) / speed_to_erpm_gain_;
+  double current_speed = ( state->state.speed - erpm_offset_ ) / speed_to_erpm_gain_;
   double current_steering_angle(0.0), current_angular_velocity(0.0);
   if (use_servo_cmd_) {
     current_steering_angle =
-      ( last_servo_cmd_->data - steering_to_servo_offset_ ) / steering_to_servo_gain_;
+      ( last_servo_cmd_->data - servo_offset_ ) / steering_to_servo_gain_;
     current_angular_velocity = current_speed * tan(current_steering_angle) / wheelbase_;
   }
 
