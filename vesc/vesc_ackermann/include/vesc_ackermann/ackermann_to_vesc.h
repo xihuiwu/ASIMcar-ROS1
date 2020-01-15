@@ -18,9 +18,9 @@ public:
 private:
   // ROS parameters
   // conversion gain and offset
-  double speed_to_erpm_gain_, speed_to_erpm_offset_;
-  double steering_to_servo_gain_, steering_to_servo_offset_;
-  double torque_constant_, vehicle_mass_, wheel_radius_, gear_ratio_;
+  double speed_to_erpm_gain_, erpm_offset_;
+  double steering_to_servo_gain_, servo_offset_;
+  double torque_constant_, vehicle_mass_, wheel_radius_, gear_ratio_, current_offset_;
 
   /** @todo consider also providing an interpolated look-up table conversion */
 
