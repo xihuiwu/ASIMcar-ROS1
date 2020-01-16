@@ -4,16 +4,15 @@ namespace camera
 {
 Camera::Camera(ros::NodeHandle nh, ros::NodeHandle private_nh)
 {
-	if (private_nh.hasParam("intrinsic")) { private_nh.getParam("intrinsic", dataK) }
-	if (private_nh.hasParam("extrinsic")) { private_nh.getParam("extrinsic", dataD) }
+	if (private_nh.hasParam("intrinsic")) private_nh.getParam("intrinsic", dataK); else return;
+	if (private_nh.hasParam("extrinsic")) private_nh.getParam("extrinsic", dataD); else return;
 	K = Mat(3, 3, CV_64FC1, dataK);
 	D = Mat(4, 1, CV_64FC1, dataD);
 	cv::fisheye::initUndistortRectifyMap(K, D, Matx33d::eye(), K, frame.size(), CV_32FC1, mapx, mapy);
 	mapx_gpu.upload(mapx);
 	mapy_gpu.upload(mapy);
 
-	if (!private_nh.hasParam("pipeline")) {"port", filename}
-	else { private_nh.getParam("pipeline", filename) }
+	if (private_nh.hasParam("filename")) private_nh.getParam("filename", filename); else return;
 
 	color_pub = private_nh.advertise<sensor_msgs::Image>("undistort", 1);
 	gray_pub = private_nh.advertise<sensor_msgs::Image>("undistort_gray", 1);
