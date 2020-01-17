@@ -1,48 +1,86 @@
-#include "camera/camera.h"
+#include "front_cam/camera.h"
 
 namespace camera
 {
+
+inline void string2double(std::string array, double *data, int size);
+
 Camera::Camera(ros::NodeHandle nh, ros::NodeHandle private_nh)
 {
-	if (private_nh.hasParam("intrinsic")) private_nh.getParam("intrinsic", dataK); else return;
-	if (private_nh.hasParam("extrinsic")) private_nh.getParam("extrinsic", dataD); else return;
-	K = Mat(3, 3, CV_64FC1, dataK);
-	D = Mat(4, 1, CV_64FC1, dataD);
-	cv::fisheye::initUndistortRectifyMap(K, D, Matx33d::eye(), K, frame.size(), CV_32FC1, mapx, mapy);
+	private_nh.param<int>("width", width, 720);
+	private_nh.param<int>("height", height, 1280);
+	frame = cv::Mat(cv::Size(height, width), CV_8UC3);
+	frame_gpu = cv::cuda::GpuMat(height, width, CV_8UC3);
+	
+	
+	private_nh.param<std::string>("intrinsic", paramK, "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0");
+	private_nh.param<std::string>("extrinsic", paramD, "0.0, 0.0, 0.0, 0.0");
+	string2double(paramK, dataK, 9);
+	string2double(paramD, dataD, 4);
+	K = cv::Mat(cv::Size(3, 3), CV_64FC1, dataK);
+	D = cv::Mat(cv::Size(4, 1), CV_64FC1, dataD);
+	cv::fisheye::initUndistortRectifyMap(K, D, cv::Matx33d::eye(), K, cv::Size(height, width), CV_32FC1, mapx, mapy);
 	mapx_gpu.upload(mapx);
 	mapy_gpu.upload(mapy);
-
-	if (private_nh.hasParam("filename")) private_nh.getParam("filename", filename); else return;
+	
+	private_nh.param<std::string>("filename", filename, "");
 
 	color_pub = private_nh.advertise<sensor_msgs::Image>("undistort", 1);
 	gray_pub = private_nh.advertise<sensor_msgs::Image>("undistort_gray", 1);
 
 }
 
-Camera::run()
-{	
-	cap.open(filename);
-	while (ros::ok())
+inline void string2double(std::string array, double *data, int size)
+{
+	std::stringstream ss(array);
+	for (int i=0; i<size; ++i)
 	{
-		cap.read(frame)
-		if (frame.empty) break;
-		else
+		ss >> *(data+i);
+	}
+}
+
+void Camera::run()
+{	
+	boost::thread thread1(&Camera::capture, this);
+	
+	while (ros::ok())
+	{	
+		if (captured)
 		{
+			// clock_t t;
+			// t = clock();
 			frame_gpu.upload(frame);
-			cuda::remap(frame_gpu, frame_undistort_gpu, mapx_gpu, mapy_gpu, INTER_LINEAR, BORDER_CONSTANT);
-			cuda::cvtColor(undistort_gpu, undistort_gray_gpu, CV_BGR2GRAY);
+			cv::cuda::remap(frame_gpu, undistort_gpu, mapx_gpu, mapy_gpu, cv::INTER_LINEAR, cv::BORDER_CONSTANT);
+			cv::cuda::cvtColor(undistort_gpu, undistort_gray_gpu, CV_BGR2GRAY);
 
-			undistort_gpu.convertTo(undistort, cv::CV_8UC3);
-			undistort_gray_gpu.convertTo(undistort_gray, cv::CV_8UC3);
-
+			undistort_gpu.download(undistort);
+			undistort_gray_gpu.download(undistort_gray);
+			//t = clock() - t;
+			//std::cout << (double)t/CLOCKS_PER_SEC << std::endl;
+			
 			header.stamp = ros::Time::now();
 			color_msg = cv_bridge::CvImage(header, "bgr8", undistort).toImageMsg();
 			gray_msg = cv_bridge::CvImage(header, "mono8", undistort_gray).toImageMsg();
 
 			color_pub.publish(color_msg);
 			gray_pub.publish(gray_msg);
+			
+			captured = !captured;
 		}
 	}
+	cap.release();
 }
+
+void Camera::capture()
+{
+	cap.open(filename);
+	while (cap.isOpened())
+	{
+		captured = cap.read(frame);
+		cv::imshow("frame",frame);
+		cv::waitKey(10);
+	}
+}
+
 
 }

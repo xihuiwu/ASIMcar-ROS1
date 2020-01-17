@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 
-#include "camera/camera.h"
+#include "front_cam/camera.h"
 
 int main(int argc, char** argv)
 {	
@@ -9,6 +9,7 @@ int main(int argc, char** argv)
 	ros::NodeHandle private_nh("~");
 
 	camera::Camera camera(nh, private_nh);
+	camera.run();
 
 	return 0;
 }

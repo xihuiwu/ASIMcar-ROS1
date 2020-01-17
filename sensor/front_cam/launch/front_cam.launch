@@ -1,0 +1,10 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <!-- Config -->
+  <arg name="vesc_config" default="$(find front_cam)/config/front_cam.yaml" />
+  <rosparam file="$(arg vesc_config)" command="load" />
+
+  <!-- Front Camera -->
+  <node pkg="front_cam" type="camera_node" name="front_cam" output="screen" />
+
+</launch>

@@ -5,23 +5,20 @@
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 #include <sensor_msgs/Image.h>
+#include <std_msgs/Header.h>
 
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/calib3d.hpp>
-#include <opencv2/cudawarping.hpp>
-#include <opencv2/cudaimgproc.hpp>
-#include <opencv2/cudaarithm.hpp>
+#include <opencv2/cudacodec.hpp>
+#include <opencv2/cudawarping.hpp> // remap
+#include <opencv2/cudaimgproc.hpp> // cvtColor
 
 #include <iostream>
-#include <linux/videodev2.h>
-#include <linux/ioctl.h>
-#include <fcntl.h>
-#include <sys/ioctl.h>
-#include <sys/mman.h>
-#include <unistd.h>
 #include <string.h>
-#include <errno.h>
+
+#include <boost/thread/thread.hpp>
+#include <time.h>
 
 namespace camera
 {
@@ -30,23 +27,26 @@ class Camera
 {
 public:
 	Camera(ros::NodeHandle nh, ros::NodeHandle private_nh);
+	void run();
+	void capture();
   
 private:
-	string filename; // pipeline definition
+	std::string filename; // pipeline definition
 	int width, height;
 
-	VideoCapture cap; // video capture object
-	Mat frame(width, height, cv::CV_8UC3); // frame
-	cuda::GpuMat frame_gpu; // frame on GPU
+	cv::VideoCapture cap; // video capture object
+	bool captured; // check whether next frame is captured
+	cv::Mat frame; // frame
 
+	std::string paramK, paramD;
 	double dataK[9], dataD[4];
-	Mat K, D; // camera intrinsic and extrinsic matrices
-	Mat mapx, mapy; // map function 
-	cuda::GpuMat mapx_gpu, mapy_gpu, frame_gpu, undistort_gpu, undistort_gray_gpu; // variables for un-distortation
-	Mat undistort, undistort_gray;
+	cv::Mat K, D; // camera intrinsic and extrinsic matrices
+	cv::Mat mapx, mapy; // map function 
+	cv::cuda::GpuMat mapx_gpu, mapy_gpu, frame_gpu, undistort_gpu, undistort_gray_gpu; // variables for un-distortation
+	cv::Mat undistort, undistort_gray;
 	
 	std_msgs::Header header;
-	sensor_msgs::ImagePtr color_ptr, gray_ptr; // image messages of colored and gray images
+	sensor_msgs::ImagePtr color_msg, gray_msg; // image messages of colored and gray images
 
 	ros::Publisher color_pub, gray_pub; // publisher for color and gray images
 };
