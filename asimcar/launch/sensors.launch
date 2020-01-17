@@ -5,8 +5,13 @@
   <arg name="sensors_config" default="$(find asimcar)/config/sensors.yaml" />
   <rosparam file="$(arg sensors_config)" command="load" />
   
-  <!-- Sensors -->
-  <node name="front_cam_node" type="camera_node" pkg="front_cam" output="screen" />
+  <!-- Front Camera -->
+  <node name="front_cam" type="camera_node" pkg="front_cam" output="screen" />
+  <!-- Front Radar -->
   <node name="front_radar_node" type="radar_node.py" pkg="front_radar" output="screen" />
-
+  <!-- 360 LiDar -->
+  <include file="$(find gmapping)/launch/slam_gmapping_pr2.launch" />
+  <!-- IMU -->
+  <include file="$(find razor_imu_9dof)/launch/razor-pub.launch" />
+  
 </launch>
