@@ -116,7 +116,7 @@ int main(int argc, char * argv[]) {
     laser.setSampleRate(samp_rate);
     laser.setInverted(inverted);
     laser.setSingleChannel(isSingleChannel);
-    laser.setLidarType(!isTOFLidar);
+    laser.setLidarType(isTOFLidar ? TYPE_TOF : TYPE_TRIANGLE);
     bool ret = laser.initialize();
     if (ret) {
         ret = laser.turnOn();
