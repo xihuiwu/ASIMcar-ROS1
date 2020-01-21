@@ -32,17 +32,18 @@ public:
   
 private:
 	std::string filename; // pipeline definition
-	int width, height;
+	int width, height, fps;
+	bool pipeline_flag; // flag for whether choosing pipeline
 
 	cv::VideoCapture cap; // video capture object
 	bool captured; // check whether next frame is captured
-	cv::Mat frame; // frame
+	cv::Mat frame, frame_raw; // frame
 
 	std::string paramK, paramD;
 	double dataK[9], dataD[4];
 	cv::Mat K, D; // camera intrinsic and extrinsic matrices
 	cv::Mat mapx, mapy; // map function 
-	cv::cuda::GpuMat mapx_gpu, mapy_gpu, frame_gpu, undistort_gpu, undistort_gray_gpu; // variables for un-distortation
+	cv::cuda::GpuMat mapx_gpu, mapy_gpu, frame_raw_gpu, frame_gpu, undistort_gpu, undistort_gray_gpu; // variables for un-distortation
 	cv::Mat undistort, undistort_gray;
 	
 	std_msgs::Header header;

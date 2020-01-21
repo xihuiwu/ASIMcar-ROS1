@@ -9,9 +9,10 @@ Camera::Camera(ros::NodeHandle nh, ros::NodeHandle private_nh)
 {
 	private_nh.param<int>("width", width, 720);
 	private_nh.param<int>("height", height, 1280);
-	frame = cv::Mat(cv::Size(height, width), CV_8UC3);
-	frame_gpu = cv::cuda::GpuMat(height, width, CV_8UC3);
-	
+	private_nh.param<int>("fps", fps, 1280);
+	private_nh.param<bool>("pipeline_flag", pipeline_flag, false);
+	//frame_raw_gpu = cv::cuda::GpuMat(height, width, CV_8UC1);
+	frame_gpu = cv::cuda::GpuMat(height, width, CV_8UC3);	
 	
 	private_nh.param<std::string>("intrinsic", paramK, "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0");
 	private_nh.param<std::string>("extrinsic", paramD, "0.0, 0.0, 0.0, 0.0");
@@ -49,23 +50,27 @@ void Camera::run()
 		{
 			// clock_t t;
 			// t = clock();
-			frame_gpu.upload(frame);
+			std::cout << frame_raw.dims << std::endl;
+			frame_raw_gpu.upload(frame_raw);
+			std::cout << "done uploading" << std::endl;
+			cv::cuda::cvtColor(frame_raw_gpu, frame_gpu, cv::COLOR_YUV2BGR);
+			std::cout << "done decoding" << std::endl;
 			cv::cuda::remap(frame_gpu, undistort_gpu, mapx_gpu, mapy_gpu, cv::INTER_LINEAR, cv::BORDER_CONSTANT);
-			cv::cuda::cvtColor(undistort_gpu, undistort_gray_gpu, CV_BGR2GRAY);
+			cv::cuda::cvtColor(undistort_gpu, undistort_gray_gpu, cv::COLOR_BGR2GRAY);
 
 			undistort_gpu.download(undistort);
 			undistort_gray_gpu.download(undistort_gray);
 			//t = clock() - t;
 			//std::cout << (double)t/CLOCKS_PER_SEC << std::endl;
 			
-			header.stamp = ros::Time::now();
+			/*header.stamp = ros::Time::now();
 			color_msg = cv_bridge::CvImage(header, "bgr8", undistort).toImageMsg();
 			gray_msg = cv_bridge::CvImage(header, "mono8", undistort_gray).toImageMsg();
 
 			color_pub.publish(color_msg);
 			gray_pub.publish(gray_msg);
 			
-			captured = !captured;
+			captured = !captured;*/
 		}
 	}
 	cap.release();
@@ -73,12 +78,22 @@ void Camera::run()
 
 void Camera::capture()
 {
-	cap.open(filename);
+	if (pipeline_flag == 1)
+	{
+		cap.open(filename, cv::CAP_GSTREAMER);
+	}
+	else
+	{
+		cap.open(filename, cv::CAP_V4L2);
+		cap.set(cv::CAP_PROP_FRAME_WIDTH, width);
+		cap.set(cv::CAP_PROP_FRAME_HEIGHT, height);
+		cap.set(cv::CAP_PROP_FPS, fps);
+		cap.set(cv::CAP_PROP_CONVERT_RGB, false);
+	}
+	
 	while (cap.isOpened())
 	{
-		captured = cap.read(frame);
-		cv::imshow("frame",frame);
-		cv::waitKey(10);
+		captured = cap.read(frame_raw);
 	}
 }
 
