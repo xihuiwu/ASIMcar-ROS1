@@ -17,7 +17,7 @@ $ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
         -D WITH_CUBLAS=ON -D ENABLE_FAST_MATH=ON -D CUDA_FAST_MATH=ON \
         -D WITH_LIBV4L=ON -D BUILD_TESTS=OFF \
         -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF \
-        -D WITH_QT=ON -D WITH_OPENGL=ON -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules \
+        -D WITH_QT=ON -D WITH_OPENGL=ON \
         -D WITH_JPEG=ON -D BUILD_JPEG=OFF -DJPEG_LIBRARY=/usr/lib/aarch64-linux-gnu/libnvjpeg.so \
         -D JPEG_INCLUDE_DIR=/usr/src/jetson_multimedia_api/include/libjpeg-8b ..
 $ make -j4
