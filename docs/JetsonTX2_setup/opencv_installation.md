@@ -12,8 +12,7 @@ $ cd build
 With libnvjpeg
 ```
 $ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local \
-        -D BUILD_opencv_world=OFF
-        -D WITH_CUDA=ON \
+        -D BUILD_opencv_world=OFF -D WITH_CUDA=ON \
         -D WITH_CUBLAS=ON -D ENABLE_FAST_MATH=ON -D CUDA_FAST_MATH=ON \
         -D WITH_LIBV4L=ON -D BUILD_TESTS=OFF \
         -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF \
