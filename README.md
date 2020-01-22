@@ -27,11 +27,11 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 
 # To Do List
 *2020-1-22*
-- [ ] Check ydlidar hardware flaw 
+- [ ] Check ydlidar hardware flaw
+- [ ] Collect lane pictures
 
 *2020-1-14*
 - [x] Change ports name and permissions
-- [ ] Collect lane pictures
 - [x] Add Laser SLAM package
 - [ ] Change Lidar Lite to Devantech SRF10 Ultrasonic Range Finder
 
