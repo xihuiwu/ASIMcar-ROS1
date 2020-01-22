@@ -24,27 +24,6 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 * gmapping - ROS
 * vision-opencv - ROS
 
-
-# To Do List
-*2020-1-22*
-- [ ] Check ydlidar hardware flaw
-- [ ] Collect lane pictures
-
-*2020-1-14*
-- [x] Change ports name and permissions
-- [x] Add Laser SLAM package
-- [ ] Change Lidar Lite to Devantech SRF10 Ultrasonic Range Finder
-
-*2020-1-13*
-- [x] Install Opencv 3.4.9
-- [x] Install openvslam
-
-*2020-1-12*
-- [x] Reconfigure joy to vesc controller topic
-- [x] Create ROS2 package for autoencoder
-- [x] Change Dense layer to CNN layer in the ROS2 autoencoder package
-
-
 # Citation
 If you think this platform is helpful to your research, please cite the paper. This is the [paper link](https://asmedigitalcollection.asme.org/DSCC/proceedings/DSCC2019/59148/Park%20City,%20Utah,%20USA/1070503). Here is a BibTex entry:
 ```
