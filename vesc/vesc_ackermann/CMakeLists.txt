@@ -80,6 +80,11 @@ install(FILES vesc_ackermann_nodelet.xml
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 install(DIRECTORY launch/
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
+        
+catkin_install_python(PROGRAMS
+  src/command_interpreter.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 #############
 ## Testing ##
