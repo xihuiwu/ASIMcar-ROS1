@@ -29,6 +29,7 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 *2020-1-22*
 - [ ] Check ydlidar hardware flaw
 - [ ] Collect lane pictures
+- [ ] Do something
 
 *2020-1-14*
 - [x] Change ports name and permissions
