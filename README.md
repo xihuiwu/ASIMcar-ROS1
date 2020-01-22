@@ -43,3 +43,10 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 - [x] Reconfigure joy to vesc controller topic
 - [x] Create ROS2 package for autoencoder
 - [x] Change Dense layer to CNN layer in the ROS2 autoencoder package
+
+
+# Citation
+If you think this platform is helpful to your research, please cite the paper. This is the [paper link](https://asmedigitalcollection.asme.org/DSCC/proceedings/DSCC2019/59148/Park%20City,%20Utah,%20USA/1070503). Here is a BibTex entry:
+```
+@misc{wu_eskandarian_azim_2019, title={An Improved Small-Scale Connected Autonomous Vehicle Platform}, url={https://asmedigitalcollection.asme.org/DSCC/proceedings/DSCC2019/59148/Park City, Utah, USA/1070503}, journal={Dynamic Systems and Control Conference | ASME Digital Collection}, publisher={American Society of Mechanical Engineers Digital Collection}, author={Wu and Eskandarian and Azim}, year={2019}, month={Nov}}
+```
