@@ -26,11 +26,13 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 
 
 # To Do List
+*2020-1-22*
+- [ ] Check ydlidar hardware flaw 
+
 *2020-1-14*
 - [x] Change ports name and permissions
 - [ ] Collect lane pictures
 - [x] Add Laser SLAM package
-- [ ] Change USB camera to CSi camera, pipeline reference to [this link](https://github.com/JetsonHacksNano/CSI-Camera/blob/master/simple_camera.cpp).
 - [ ] Change Lidar Lite to Devantech SRF10 Ultrasonic Range Finder
 
 *2020-1-13*
