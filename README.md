@@ -3,7 +3,7 @@ This is the repository for autonomous RC car of ASIM Lab. The project is entirel
 
 * Information about apply realtime patch to the kernel and build can be found on [kernel_rt_patch](https://github.com/xihuiwu/ASIMcar/blob/master/docs/JetsonTX2_setup/kernel_rt_patch.md).
 
-* To change CPU setup, read through the [cpu_setup](https://github.com/xihuiwu/ASIMcar-ROS1/blob/master/docs/JetsonTX2_setup/cpu_setup.md).
+* To change CPU configuration for better computation performance, read through the [cpu_setup](https://github.com/xihuiwu/ASIMcar-ROS1/blob/master/docs/JetsonTX2_setup/cpu_setup.md).
 
 * To install OpenCV with CUDA support, refer to this [install_tutorial](https://github.com/xihuiwu/ASIMcar/blob/master/docs/JetsonTX2_setup/opencv_installation.md).
 After OpenCV installation, ROS cv2.so which is located
