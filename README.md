@@ -25,7 +25,7 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 
 # Extra Dependencies
 * [PyGame](https://www.pygame.org/wiki/CompileUbuntu?parent=)
-* OpenCV
+* [OpenCV](https://github.com/opencv/opencv)
 
 
 # To Do List
