@@ -1,5 +1,5 @@
 # ASIMcar-ROS1
-This is the repository for autonomous RC car of ASIM Lab. The project is entirely based on ROS. The other packages run on ROS2 and can be located [here](https://github.com/xihuiwu/ASIMcar-ROS2).
+This is the repository for autonomous RC car of ASIM Lab. The project is entirely based on ROS. The other packages that run on ROS2 can be located [here](https://github.com/xihuiwu/ASIMcar-ROS2).
 
 * Before compile the workspace please run the setup.bash file to install package dependencies
 ```
