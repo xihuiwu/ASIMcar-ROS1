@@ -22,7 +22,9 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 * [vision_opencv in the workspace](https://github.com/ros-perception/vision_opencv)
 * [PyGame](https://www.pygame.org/wiki/CompileUbuntu?parent=)
 * gmapping - ROS
-* vision-opencv - ROS
+```
+apt install ros-melodic-gmapping
+```
 
 # Citation
 If you think this platform is helpful to your research, please cite the paper. This is the [paper link](https://asmedigitalcollection.asme.org/DSCC/proceedings/DSCC2019/59148/Park%20City,%20Utah,%20USA/1070503). Here is a BibTex entry:
