@@ -21,7 +21,7 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 # Extra Dependencies
 * [vision_opencv in the workspace](https://github.com/ros-perception/vision_opencv)
 * [PyGame](https://www.pygame.org/wiki/CompileUbuntu?parent=)
-* gmapping - ROS
+* gmapping
 ```
 apt install ros-melodic-gmapping
 ```
