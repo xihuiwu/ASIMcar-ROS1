@@ -5,21 +5,31 @@ asimcar:
     gear_ratio: 6.87
 
 vesc:
-    smooth_rate: 80.0
+    # motor torque constant
+    torque_constant: 3500
 
-    # erpm (electrical rpm) = speed_to_erpm_gain * speed (m/s) + erpm_offset
-    max_acceleration: 3.5 # m/s^2
-    speed_to_erpm_gain: 1988 # m/s -> rpm
-    erpm_offset: 0.0 # rpm
+    # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
+    speed_to_erpm_gain: 1988
+    speed_to_erpm_offset: 0.0
 
-    # servo value (0 to 1) =  steering_angle_to_servo_gain * steering_angle (radians) + servo_offset
-    max_servo_speed: 3.2 # rad/sec
-    steering_angle_to_servo_gain: -1.0472 # rad -> servo value
-    servo_offset: 0.58 # servo value
+    # speed smoother - limits acceleration and smooths anything above limit
+    max_acceleration: 3.5 # meters/second^2
+    throttle_smoother_rate: 75.0 # messages/sec
 
-    # current = mass * wheel_radius * 4 / gear_ratio / torque_constant * acceleration (m/s^2)+ current_offset
-    max_jerk: 3.2 # m/s^3
-    torque_constant: 3500 # kV
+    # servo value (0 to 1) =  steering_angle_to_servo_gain * steering angle (radians) + steering_angle_to_servo_offset
+    steering_angle_to_servo_gain: -1.0472
+    steering_angle_to_servo_offset: 0.58
+
+    # servo smoother - limits rotation speed and smooths anything above limit
+    max_servo_speed: 3.2 # radians/second
+    servo_smoother_rate: 75.0 # messages/sec
+
+    # current (A) = torque_to_current_gain * acceleration (meters / second^2) * mass * radius
+    torque_to_current_gain: 0.0002857
+
+    # current smoother - limits jerk and smooths anything above limit
+    max_jerk: 3.2 # meters/second^3
+    current_smoother_rate: 75.0 # messages/sec
 
     tachometer_ticks_to_meters_gain: 0.00225
     # publish odom to base link tf

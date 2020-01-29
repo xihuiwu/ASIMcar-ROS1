@@ -1,0 +1,10 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  
+  <include file="$(find asimcar)/launch/vesc.launch" />
+  
+  <include file="$(find asimcar)/launch/sensors.launch" />
+  
+  <include file="$(find asimcar)/launch/joy_teleop.launch" />
+
+</launch>

@@ -1,14 +1,6 @@
-# joy_teleop_node (require pygame library)
-Published Topic:
-* /vesc/ackermann_cmd
-
-# command_interpreter
+# joy_teleop_node
 Subscribed Topic:
-* /vesc/commands/motor/unsmoothed_speed
-* /vesc/commands/servo/unsmoothed_position
-* /vesc/commands/servo/unsmoothed_current
+/joy
 
 Published Topic:
-* /vesc/commands/motor/speed
-* /vesc/commands/servo/position
-* /vesc/commands/motor/current
+* /vesc/ackermann_cmd (actual topic is /vesc/ackermann_cmd_throttled)
