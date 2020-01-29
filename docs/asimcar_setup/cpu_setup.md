@@ -1,3 +1,4 @@
+# All Modes
 |Mode |Mode Name      |Denver 2 |Frequency |ARM A57 |Frequency |GPU Frequency|
 |----:|:--------------|--------:|---------:|-------:|---------:|------------:|
 |    0|Max-N	        |        2|   2.0 GHz|       4|   2.0 GHz|     1.30 Ghz|
@@ -6,12 +7,12 @@
 |    3|Max-P ARM	    |        0|	 	       |       4|   2.0 GHz|     1.12 Ghz|
 |    4|Max-P Denver   |        1|   2.0 GHz|       1|   2.0 GHz|     1.12 Ghz|
 
-# Change mode:
+# Change Mode:
 ```
 sudo nvpmodel -m [mode]
 ```
 
-# Find current mode:
+# Find Current Mode:
 ```
 sudo nvpmodel -q
 ```
