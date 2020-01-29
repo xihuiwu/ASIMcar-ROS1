@@ -7,11 +7,10 @@ This is the repository for autonomous RC car of ASIM Lab. The project is entirel
 
 * To install OpenCV with CUDA support, refer to this [install_tutorial](https://github.com/xihuiwu/ASIMcar/blob/master/docs/JetsonTX2_setup/opencv_installation.md).
   
-* When building the workspace, using the following build command to avoid opencv library conflict.
+* When building the workspace, using the following build command to avoid opencv library conflict. However, this issue would be avoided by using newer version of ROS (>= Melodic).
 ```
 catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 ```
-This issue would be avoided by using newer version of ROS (>= Melodic)
 
 # Extra Dependencies
 * [PyGame](https://www.pygame.org/wiki/CompileUbuntu?parent=)
