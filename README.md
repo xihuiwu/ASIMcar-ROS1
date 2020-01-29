@@ -19,10 +19,8 @@ catkin build -DOpenCV_DIR=/usr/local/share/OpenCV
 This issue would be avoided by using newer version of ROS (>= Melodic)
 
 # Extra Dependencies
-* [vision_opencv in the workspace](https://github.com/ros-perception/vision_opencv)
 * [PyGame](https://www.pygame.org/wiki/CompileUbuntu?parent=)
-* gmapping - ROS
-* vision-opencv - ROS
+* OpenCV
 
 
 # To Do List
