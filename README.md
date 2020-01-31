@@ -1,7 +1,7 @@
 # ASIMcar-ROS1
 This is the repository for autonomous RC car of ASIM Lab. The project is entirely based on ROS. The other packages that run on ROS2 can be located [here](https://github.com/xihuiwu/ASIMcar-ROS2).
 
-* Before make the workspace please run the **setup.bash** file to install package dependencies
+* Before make the workspace please run the **setup.bash** file to install package dependencies.
 ```
 sudo sh setup.sh
 ```
@@ -11,10 +11,7 @@ sudo sh setup.sh
 * To change CPU setup, read through the [cpu_setup](https://github.com/xihuiwu/ASIMcar/blob/master/docs/asimcar_setup/cpu_setup.md).
 
 * To install OpenCV with CUDA support, refer to this [install_tutorial](https://github.com/xihuiwu/ASIMcar/blob/master/docs/JetsonTX2_setup/opencv_installation.md).
-After OpenCV installation, ROS cv2.so which is located
-```
-/opt/ros/{ROS_version}/lib/python2.7/dist-packages
-```
+After OpenCV installation, ROS cv2.so which is located `/opt/ros/{ROS_version}/lib/python2.7/dist-packages`
 could be deleted or renamed.
   
 * When building the workspace, using the following build command to avoid opencv library conflict.
