@@ -29,6 +29,7 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 *2020-1-22*
 - [x] Check ydlidar hardware flaw (might solved)
 - [ ] Collect lane pictures
+- [ ] Calibrate IMU
 
 *2020-1-14*
 - [x] Change ports name and permissions
