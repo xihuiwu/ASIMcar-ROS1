@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>front_cam</name>
+  <name>camera_correction</name>
   <version>0.0.1</version>
   <description>ASIMcar front camera package</description>
 
