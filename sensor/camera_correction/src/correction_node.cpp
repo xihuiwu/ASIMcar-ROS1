@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 
-#include "front_cam/camera.h"
+#include "camera_correction/camera_correction.h"
 
 int main(int argc, char** argv)
 {	
