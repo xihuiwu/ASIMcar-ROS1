@@ -27,7 +27,7 @@ Camera::Camera(ros::NodeHandle nh, ros::NodeHandle private_nh)
 	private_nh.param<std::string>("filename", filename, "");
 
 	color_pub = private_nh.advertise<sensor_msgs::Image>("undistort", 1);
-	gray_pub = private_nh.advertise<sensor_msgs::Image>("undistort_gray", 1);
+	compress_pub = private_nh.advertise<sensor_msgs::CompressedImage>("compressed", 1);
 
 }
 
@@ -50,27 +50,27 @@ void Camera::run()
 		{
 			// clock_t t;
 			// t = clock();
-			std::cout << frame_raw.dims << std::endl;
 			frame_raw_gpu.upload(frame_raw);
-			std::cout << "done uploading" << std::endl;
+			//std::cout << "done uploading" << std::endl;
 			cv::cuda::cvtColor(frame_raw_gpu, frame_gpu, cv::COLOR_YUV2BGR);
-			std::cout << "done decoding" << std::endl;
+			//std::cout << "done converting color" << std::endl;
 			cv::cuda::remap(frame_gpu, undistort_gpu, mapx_gpu, mapy_gpu, cv::INTER_LINEAR, cv::BORDER_CONSTANT);
 			cv::cuda::cvtColor(undistort_gpu, undistort_gray_gpu, cv::COLOR_BGR2GRAY);
 
 			undistort_gpu.download(undistort);
-			undistort_gray_gpu.download(undistort_gray);
 			//t = clock() - t;
 			//std::cout << (double)t/CLOCKS_PER_SEC << std::endl;
 			
-			/*header.stamp = ros::Time::now();
+			header.stamp = ros::Time::now();
 			color_msg = cv_bridge::CvImage(header, "bgr8", undistort).toImageMsg();
-			gray_msg = cv_bridge::CvImage(header, "mono8", undistort_gray).toImageMsg();
+			compressed_msg.header = header;
+			compressed_msg.format = "jpeg";
+			compressed_msg.data = cv::imencode(".jpg",undistort,)
 
 			color_pub.publish(color_msg);
-			gray_pub.publish(gray_msg);
+			compressed_pub.publish(compressed_msg);
 			
-			captured = !captured;*/
+			captured = !captured;
 		}
 	}
 	cap.release();
