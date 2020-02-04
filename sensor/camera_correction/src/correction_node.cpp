@@ -8,8 +8,8 @@ int main(int argc, char** argv)
 	ros::NodeHandle nh;
 	ros::NodeHandle private_nh("~");
 
-	camera::Camera camera(nh, private_nh);
-	camera.run();
+	Correction correction(nh, private_nh);
+	correction.run();
 
 	return 0;
 }

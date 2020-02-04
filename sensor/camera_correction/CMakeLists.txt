@@ -21,18 +21,16 @@ catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS
   roscpp
-  std_msgs
   sensor_msgs
   cv_bridge
-  image_transport
 )
 
-add_executable(camera_node src/camera_node.cpp
-                           src/camera.cpp)
-add_dependencies(camera_node ${catkin_EXPORTED_TARGETS})
-target_link_libraries(camera_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
+add_executable(correction_node src/correction_node.cpp
+                           src/camera_correction.cpp)
+add_dependencies(correction_node ${catkin_EXPORTED_TARGETS})
+target_link_libraries(correction_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
-install(TARGETS camera_node
+install(TARGETS correction_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
