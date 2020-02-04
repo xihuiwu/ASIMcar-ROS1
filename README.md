@@ -22,7 +22,7 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 
 # Extra Dependencies
 * [PyGame](https://www.pygame.org/wiki/CompileUbuntu?parent=)
-* [OpenCV](https://github.com/opencv/opencv)
+* [OpenCV - CUDA enabled](https://github.com/opencv/opencv)
 
 
 # To Do List
