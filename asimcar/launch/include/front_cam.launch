@@ -1,0 +1,16 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <node name="gscam" pkg="gscam" type="gscam" output="screen">
+    <param name="camera_name" value="default"/>
+    <param name="image_encoding" value="rgb8"/>
+    <param name="gscam_config" value="v4l2src device=/dev/video1 ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegdec ! videoconvert n-threads=2"/>
+    <param name="use_gst_timestamps" value="false"/>
+    <param name="sync_sink" value="false"/>
+  </node>
+  
+  <arg name="front_cam_config" default="$(find asimcar)/config/front_cam.yaml"/>
+  <node pkg="camera_correction" type="correction_node" name="camera" output="screen">
+    <rosparam file="$(arg front_cam_config)" command="load"/>
+  </node>
+
+</launch>
