@@ -26,6 +26,10 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 
 
 # To Do List
+*2020-2-5*
+- [ ] RSSI kalman filter
+- [ ] Triangulation
+
 *2020-1-22*
 - [x] Check ydlidar hardware flaw (might solved)
 - [ ] Collect lane pictures
