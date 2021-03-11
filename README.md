@@ -27,18 +27,17 @@ This issue would be avoided by using newer version of ROS (>= Melodic)
 
 # To Do List
 *2020-2-5*
-- [ ] RSSI kalman filter
-- [ ] Triangulation
+- [x] RSSI kalman filter
+- [x] Triangulation
 
 *2020-1-22*
 - [x] Check ydlidar hardware flaw (might solved)
-- [ ] Collect lane pictures
+- [x] Collect lane pictures
 - [x] Calibrate IMU
 
 *2020-1-14*
 - [x] Change ports name and permissions
 - [x] Add Laser SLAM package
-- [ ] Change Lidar Lite to Devantech SRF10 Ultrasonic Range Finder
 
 *2020-1-13*
 - [x] Install Opencv 3.4.9
